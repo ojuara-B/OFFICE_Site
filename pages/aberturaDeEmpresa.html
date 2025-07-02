@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Multi-Step</title>
+  <style>
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+  </style>
+</head>
+<body>
+  <form id="multiStepForm">
+    <!-- Tela 1 -->
+    <div class="form-step active" id="step1">
+      <h2>Passo 1</h2>
+      <label>Nome: <input type="text" id="nome" required></label>
+      <button type="button" onclick="nextStep(1)">Próximo</button>
+    </div>
+
+    <!-- Tela 2 -->
+    <div class="form-step" id="step2">
+      <h2>Passo 2</h2>
+      <label>Email: <input type="email" id="email" required></label>
+      <button type="button" onclick="previousStep(2)">Voltar</button>
+      <button type="button" onclick="nextStep(2)">Próximo</button>
+    </div>
+
+    <!-- Tela 3 -->
+    <div class="form-step" id="step3">
+      <h2>Passo 3</h2>
+      <label>Telefone: <input type="text" id="telefone" required></label>
+      <button type="button" onclick="previousStep(3)">Voltar</button>
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+
+  <script>
+    let currentStep = 1;
+
+    function nextStep(step) {
+      saveToLocalStorage(step); // Salva os dados da tela atual
+      document.getElementById(`step${step}`).classList.remove('active');
+      currentStep = step + 1;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+
+    function previousStep(step) {
+      document.getElementById(`step${step}`).classList.remove('active');
+      currentStep = step - 1;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+
+    function saveToLocalStorage(step) {
+      const data = {};
+      if (step === 1) {
+        data.nome = document.getElementById('nome').value;
+      } else if (step === 2) {
+        data.email = document.getElementById('email').value;
+      } else if (step === 3) {
+        data.telefone = document.getElementById('telefone').value;
+      }
+      localStorage.setItem(`formStep${step}`, JSON.stringify(data));
+    }
+
+    document.getElementById('multiStepForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Recupera todos os dados do Local Storage
+      const nome = JSON.parse(localStorage.getItem('formStep1')).nome;
+      const email = JSON.parse(localStorage.getItem('formStep2')).email;
+      const telefone = JSON.parse(localStorage.getItem('formStep3')).telefone;
+
+      const finalData = { nome, email, telefone };
+
+      // Faz POST para o backend
+      fetch('https://seu-backend-api.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Sucesso:', data);
+          alert('Dados enviados com sucesso!');
+          localStorage.clear(); // Limpa os dados salvos
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Erro ao enviar os dados.');
+        });
+    });
+  </script>
+</body>
+</html>
