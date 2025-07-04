@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale com a OFFICE CONT no WhatsApp</title>
+  <meta name="description" content="Fale com a equipe da OFFICE CONTADORES ASSOCIADOS via WhatsApp para dúvidas, serviços e informações.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul-office: #2366ce;
+      --preto-translucido: rgba(28,28,28,1);
+      --borda-card: #414141;
+      --verde-wpp: #25D366;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      font-family:'Menlo', 'Consolas', monospace;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: var(--azul-office);
+      overflow-x: hidden;
+    }
+    /* Fundo com imagem e overlay azul */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.78), rgba(58,75,138,1)),
+        url('https://www.officecont.tech/assets/imgs/Fundo-3.png') no-repeat center center;
+      background-size: cover;
+      z-index: 0;
+    }
+    /* Logo branca fora do card, fixa canto sup. esq. */
+    .logo-top {
+      position: fixed;
+      top: 34px;
+      left: 40px;
+      width: 350px;
+      z-index: 10;
+      filter: brightness(0) invert(1);
+      transition: filter 0.25s;
+    }
+    @media (max-width: 600px) {
+      .logo-top {
+        width: 85px;
+        top: 12px;
+        left: 10px;
+      }
+    }
+    .bgblue {
+      position: relative;
+      z-index: 1;
+      background: none;
+      padding: 0;
+      border-radius: 1.2rem;
+      max-width: 370px;
+      width: 100%;
+      margin: 40px auto 0 auto;
+      box-shadow: none;
+    }
+    /* Card estilo dark */
+    .card {
+      background: var(--preto-translucido);
+      border: 1.4px solid var(--borda-card);
+      border-radius: 12px;
+      box-shadow: 0 2px 20px 0px #00000040;
+      font-family: 'DM Mono', 'Menlo', 'Consolas', monospace;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 2.2rem 1.5rem 2rem 1.5rem;
+      position: relative;
+      font-size: 1.06rem;
+    }
+    h1 {
+      margin-top: 0;
+      font-family: 'DM Mono', 'Menlo', 'Consolas', monospace;
+      font-weight: 700;
+      font-size: 24px;
+      color: #2366ce;
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 16px #16275510;
+    }
+    .sub {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 22px;
+      line-height: 1.4;
+      text-align: center;
+      font-family: 'Poppins','DM Mono', 'Menlo', 'Consolas', monospace;
+      text-shadow: none;
+    }
+    .wpp-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--verde-wpp);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.07rem;
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-shadow: 0 2px 12px rgba(39, 174, 96, 0.11);
+      margin-top: 10px;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+      font-family: 'DM Mono', 'Menlo', 'Consolas', monospace;
+    }
+    .wpp-btn:hover {
+      background: #20b65a;
+    }
+    .wpp-btn svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      fill: #fff;
+    }
+    .footer {
+      color: #d0d6e8;
+      font-size: 12px;
+      margin-top: 18px;
+      opacity: 0.88;
+      text-align: center;
+      font-family: 'DM Mono', 'Menlo', 'Consolas', monospace;
+      text-shadow: none;
+    }
+    @media (max-width: 500px) {
+      .bgblue, .card {
+        max-width: 95vw;
+        padding: 0.6rem;
+      }
+      h1 {
+        font-size: 1.05rem;
+      }
+      .sub {
+        font-size: 0.93rem;
+      }
+      .wpp-btn {
+        font-size: 0.98rem;
+        padding: 13px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../assets/imgs/OfficeCont-Logo.png" alt="Logo Office Contadores" class="logo-top">
+  <div class="bgblue">
+    <div class="card">
+      <h1>Fale com a Office Cont</h1>
+      <div class="sub">
+        Saiba tudo sobre a <b>caixa postal empresarial</b>.
+        Nosso time está pronto para te ajudar no WhatsApp!
+      </div>
+      <a class="wpp-btn" href="https://wa.me/558181281581?text=Olá,%20desejo%20saber%20como%20funciona%20a%20caixa%20postal." target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32"><path d="M16.004 3.2C9.107 3.2 3.204 9.103 3.204 16c0 2.719.748 5.224 2.044 7.368l-2.17 6.502 6.67-2.073c2.03 1.11 4.353 1.75 6.257 1.75 6.896 0 12.8-5.902 12.8-12.797C28.804 9.103 22.9 3.2 16.004 3.2zm0 23.203c-1.792 0-3.925-.596-5.606-1.556l-.398-.236-3.968 1.23 1.226-3.867-.257-.409C5.11 19.363 4.4 17.727 4.4 16c0-6.43 5.174-11.602 11.604-11.602 6.428 0 11.6 5.172 11.6 11.602 0 6.43-5.172 11.603-11.6 11.603zm6.456-8.426c-.354-.178-2.101-1.037-2.428-1.157-.325-.12-.562-.178-.799.179-.238.355-.919 1.158-1.127 1.395-.207.238-.417.267-.772.089-.356-.178-1.506-.555-2.87-1.767-1.06-.943-1.775-2.105-1.985-2.462-.207-.355-.022-.546.156-.723.16-.158.356-.417.534-.625.178-.208.237-.357.357-.595.12-.237.06-.446-.03-.624-.09-.178-.8-1.92-1.097-2.627-.29-.698-.583-.601-.799-.612l-.682-.012c-.237 0-.623.089-.949.446-.325.356-1.241 1.213-1.241 2.956 0 1.744 1.271 3.432 1.449 3.673.178.237 2.502 3.826 6.063 5.221.849.328 1.51.522 2.027.668.852.242 1.63.208 2.241.127.684-.093 2.101-.86 2.398-1.691.297-.83.297-1.54.208-1.689-.09-.148-.325-.237-.68-.415z"/></svg>
+        FALAR NO WHATSAPP
+      </a>
+      <div class="footer">
+        OFFICE CONTADORES ASSOCIADOS<br>
+        Atendimento via WhatsApp: (81) 8128-1581
+      </div>
+    </div>
+  </div>
+</body>
+</html>
